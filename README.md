@@ -33,3 +33,23 @@ app/logs
 ```
 
 ## 运行虚拟机
+
+将你的web程序放在app/web目录下，nginx默认root在app/web/public
+
+运行以下命令之后绑定的地址为localhost:8000
+```
+cd app
+docker run -ti \
+  -p 8000:80 \
+  -v $PWD:/app \
+  -e INIT=schema.sh \
+  ecjtunet/php
+```
+
+##指定启动脚本
+
+docker run 的时候加上-e参数可以指定启动脚本，例如：
+```
+  -e INIT=schema.sh
+```
+这样docker在run之后会执行app/schema.sh，你可以通过修改这个文件来执行需要的启动命令，比如composer update。可以指定多个-e参数。
