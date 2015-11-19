@@ -8,6 +8,7 @@ RUN apt-get install -y nginx php5-fpm php5-mysqlnd php5-cli mysql-server supervi
 
 RUN sed -e 's/;daemonize = yes/daemonize = no/' -i /etc/php5/fpm/php-fpm.conf
 RUN sed -e 's/upload_max_filesize = 2M/upload_max_filesize = 32M/' -i /etc/php5/fpm/php.ini
+RUN sed -e 's/post_max_size = 8M/post_max_size = 32M/' -i /etc/php5/fpm/php.ini
 RUN sed -e 's/;listen\.owner/listen.owner/' -i /etc/php5/fpm/pool.d/www.conf
 RUN sed -e 's/;listen\.group/listen.group/' -i /etc/php5/fpm/pool.d/www.conf
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
